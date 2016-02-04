@@ -294,8 +294,16 @@
 		    }
 		},
 		_pageLeave: function(){
-	        this.removeAttribute('active')
-	        this.innerHTML = ''
+			if(this.element){
+				var element = this.element;
+				var template = config.template + this.template;
+	        	var file = '/'+element.toCamelCase()+'.html';
+	        	template +=file;
+	        	var rLink = document.head.querySelector('link[href="' + template + '"]');
+	        	rLink.parentElement.removeChild(rLink);
+			}
+      this.removeAttribute('active')
+      this.innerHTML = ''
 		},
 	};
 
